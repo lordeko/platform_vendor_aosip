@@ -1,1 +1,2 @@
 add_lunch_combo aosip_shamu-user
+add_lunch_combo aosip_d851-user
