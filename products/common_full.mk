@@ -1,7 +1,9 @@
 # Copy prebuilt files.
 PRODUCT_COPY_FILES += \
     vendor/aosip/prebuilt/common/bootanimations/BOOTANIMATION-1440x2560.zip:system/media/bootanimation.zip \
-    vendor/aosip/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/aosip/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml \
+    vendor/aosip/system/overlay/Maui_settings.apk:system/vendor/overlay/Maui_settings.apk \
+    vendor/aosip/system/overlay/Maui_settings.apk:system/app/Maui_settings.apk
 
 # Backup Tool
 ifneq ($(WITH_GMS),true)
