@@ -1,9 +1,14 @@
 # Copy prebuilt files.
+ifneq ($(filter aosip_shamu,$(TARGET_PRODUCT)),)
 PRODUCT_COPY_FILES += \
-    vendor/aosip/prebuilt/common/bootanimations/BOOTANIMATION-1440x2560.zip:system/media/bootanimation.zip \
-    vendor/aosip/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml \
-    vendor/aosip/system/overlay/Maui_settings.apk:system/vendor/overlay/Maui_settings.apk \
-    vendor/aosip/system/overlay/Maui_settings.apk:system/app/Maui_settings.apk
+    vendor/aosip/prebuilt/common/bootanimations/BOOTANIMATION-1440x2560.zip:system/media/bootanimation.zip
+endif
+
+# Apns
+ifneq ($(filter aosip_shamu aosip_hammerhead aosip_mako,$(TARGET_PRODUCT)),)
+PRODUCT_COPY_FILES += \
+    vendor/aosip/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+endif
 
 # Backup Tool
 ifneq ($(WITH_GMS),true)
@@ -17,16 +22,21 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=1
 
-# SuperSU
+#extras
 PRODUCT_COPY_FILES += \
     vendor/aosip/prebuilt/common/etc/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
-    vendor/aosip/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+    vendor/aosip/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon \
+    vendor/aosip/system/overlay/Maui_settings.apk:system/vendor/overlay/Maui_settings.apk \
+    vendor/aosip/system/overlay/Maui_settings.apk:system/app/Maui_settings.apk
 
 # Additional prebuilt APKs and libs
+ifneq ($(filter aosip_shamu aosip_hammerhead aosip_mako,$(TARGET_PRODUCT)),)
 PRODUCT_PACKAGES += \
     GoogleCamera
+endif
 
 # Google Camera dependancies
+ifneq ($(filter aosip_shamu aosip_hammerhead aosip_mako,$(TARGET_PRODUCT)),)
 PRODUCT_COPY_FILES += \
     vendor/aosip/proprietary/common/lib/libgcam.so:system/lib/libgcam.so \
     vendor/aosip/proprietary/common/lib/libgcam_swig_jni.so:system/lib/libgcam_swig_jni.so \
@@ -40,7 +50,7 @@ PRODUCT_COPY_FILES += \
     vendor/aosip/proprietary/common/lib/librs.layered_filter_fast_f32.so:system/lib/librs.layered_filter_fast_f32.so \
     vendor/aosip/proprietary/common/lib/librsjni.so:system/lib/librsjni.so \
     vendor/aosip/proprietary/common/lib/libRSSupport.so:system/lib/libRSSupport.so
-
+endif
 
 # Inherit common product build prop overrides
 -include vendor/aosip/products/common_versions.mk
