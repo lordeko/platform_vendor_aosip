@@ -23,6 +23,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/aosip/overlay/Launcher3
 
+# Screen recorder
+PRODUCT_PACKAGES += \
+    ScreenRecorder \
+    libscreenrecorder
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
